@@ -1,0 +1,18 @@
+GET  http://localhost:3000/helloworld
+
+###
+
+
+GET  http://localhost:3000/helloworld/61600fc8a3defcbf9609df94 
+
+###
+
+POST http://localhost:3000/helloworld
+Content-Type: application/json
+
+{
+    "name": "captain",
+    "email":"fhj",
+    "gender":"male",
+    "status":"In the queue"
+}

@@ -7,13 +7,16 @@ var schema = new mongoose.Schema({
     },
     email:{
         type:String,
-        required:true,
         unique:true
     },
-    gender:String,
-    status:String
+    gender:{
+      type: String
+    },
+    status:{
+        type: String
+    }
 })
 
-const Userdb = mongoose.model('DB1',schema)
+var Userdb = mongoose.model('sample',schema)
 
-module.exports = Userdb 
+module.exports = Userdb
