@@ -6,51 +6,54 @@ const services = require('../services/render')
 
 async function getData(req, res, next) {
     let data
+    // console.log(req.params.id);
     try{
-        data = model.findById(req.params.id)
-        if( data == null){
+        data = await model.findById(req.params.id)
+        if( data==null ){
             return res.status(404).json({message:"Cannot find Data"})
         }
-     } catch(err){
+    } catch(err){
         return res.status(500).json({message:err.message})  
-     }
-
-     res.data = data 
-     next() ; 
- }
+    }
+    res.data = data 
+    next() ; 
+}
 
 /*
     @description Root Route ( all users )
     @method GET /
 */
-route.get('/',services.homeRoute)
+route.get('/',services.allUser) ;
 
 /*
     @description one User
     @method GET /addUser
 */
-route.get('/:id',getData,services.user)
-
+route.get('/:id',getData,services.singleUser)
 
 /*
     @description one User
     @method GET /addUser
 */
-route.post('/',services.post)
-
+route.get('/post',services.post)
 
 /*
     @description update User
     @method GET /update User
 */
-route.patch('/:id',services.updateUser)
-
+route.post('/update/:id',getData,services.updateUser) ;
 
 /*
-    @description one User
-    @method GET /addUser
+    @description delete user
+    @method GET / user
 */
-route.delete('/:id',services.user)
+route.get('/delete/:id',services.deleteUser) ;
 
 
+
+// all api
+route.get('/api/users',services.allUserAPI)
+route.post('/api/users',services.postAPI)
+route.patch('/api/users/:id',services.putAPI)
+route.delete('/api/users/:id',services.deleteAPI)
 module.exports = route 

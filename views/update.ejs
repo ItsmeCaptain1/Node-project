@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h4>Update your Data</h4>
+        <form  method="post">
+            <input type="text" placeholder="name" name="name" value="<%=data.name%>" required>
+            <input type="text" placeholder="email" name="email" value="<%=data.email%>" required>
+            <input type="text" placeholder="gender" name="gender" value="<%=data.gender%>" required>
+            <input type="text" placeholder="status" name="status" value="<%=data.status%>" required>
+            <button type="submit" formaction='/update/<%=data._id%>'>Update</button>
+            <button type="submit" formaction='/delete/<%=data._id%>'>Delete</button>
+        </form>
+    </div>
+</body>
+</html>

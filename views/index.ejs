@@ -4,9 +4,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD APPLICATION</title>
+    <link href="/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Home Page</title>
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        </style>
 </head>
 <body>
-    <h1>Hey its me Captain1</h1>
+    
+    <div class="container">
+        <h3>Add Data</h3>
+        <form action='/api/users' method="post">
+            <input type="text" placeholder="name" name="name" required>
+            <input type="text" placeholder="email" name="email" required>
+            <input type="text" placeholder="gender" name="gender" required>
+            <input type="text" placeholder="status" name="status" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <hr>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Status</th>
+        </tr>
+        <% data.forEach((item)=>{%>
+            <form action="/<%=item._id%>" method="GET"> 
+                <tr id="<%=item._id%>" >
+                    <!-- <%=item%> -->
+                    <!-- <span id='id' ><%=item._id%></span> -->
+                    <td id="name"><%= item.name%></td>
+                    <td id="email"><%= item.email%></td>
+                    <td id="gender"><%= item.gender%></td>
+                    <td id="status"><%= item.status%></td>
+                    <td><button id="updateOrDelete" type="submit">Update/Delete</button></td>
+                </tr>
+            </form>
+            
+        <%})%>
+    </table>
+    
 </body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </html>

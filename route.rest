@@ -1,18 +1,36 @@
-GET  http://localhost:3000/helloworld
+GET  http://localhost:3000/api/users
 
 ###
 
 
-GET  http://localhost:3000/helloworld/61600fc8a3defcbf9609df94 
+
+GET http://localhost:3000/api/users?id=616d0509da400fd8be97d2b1
 
 ###
 
-POST http://localhost:3000/helloworld
+
+
+POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-    "name": "captain",
-    "email":"fhj",
+    "name": "cap",
+    "email":"fdfdaad",
     "gender":"male",
-    "status":"In the queue"
+    "status":"queue"
+}
+
+###
+
+
+DELETE http://localhost:3000/api/users/616d0509da400fd8be97d2b1
+
+
+###
+
+patch  http://localhost:3000/api/users/616d0519da400fd8be97d2b3
+Content-Type: application/json
+
+{
+    "status":"cp"
 }
