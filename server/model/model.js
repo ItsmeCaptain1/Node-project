@@ -1,21 +1,25 @@
+
 const mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
-    name:{
-        type:String
-    },
-    email:{
+    empId:{
         type:String,
         unique:true
     },
-    gender:{
-      type: String
+    name:{
+        type:String
     },
-    status:{
+    age:{
+        type:Number
+    },
+    salary:{
+        type:Number
+    },
+    location:{
         type: String
     }
 })
 
-var Userdb = mongoose.model('sample',schema)
+var Userdb = mongoose.model('Employee',schema,"Employee")
 
 module.exports = Userdb

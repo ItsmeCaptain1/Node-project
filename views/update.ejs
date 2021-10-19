@@ -9,11 +9,12 @@
 <body>
     <div class="container">
         <h4>Update your Data</h4>
-        <form  method="post">
+        <form  method="get">
+            <input type="text" placeholder="employee ID" name="empId" value="<%=data.empId%>" required>
             <input type="text" placeholder="name" name="name" value="<%=data.name%>" required>
-            <input type="text" placeholder="email" name="email" value="<%=data.email%>" required>
-            <input type="text" placeholder="gender" name="gender" value="<%=data.gender%>" required>
-            <input type="text" placeholder="status" name="status" value="<%=data.status%>" required>
+            <input type="number" placeholder="age" name="age" value="<%=data.age%>" required>
+            <input type="number" placeholder="salary" name="salary" value="<%=data.salary%>" required>
+            <input type="text" placeholder="location" name="location" value="<%=data.location%>" required>
             <button type="submit" formaction='/update/<%=data._id%>'>Update</button>
             <button type="submit" formaction='/delete/<%=data._id%>'>Delete</button>
         </form>

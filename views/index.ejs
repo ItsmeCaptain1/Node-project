@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/index.css" rel="stylesheet">
+    <!-- <link href="/index.css" rel="stylesheet"> -->
+    <link rel="shortcut icon" href="#">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Home Page</title>
     <style>
@@ -29,31 +30,32 @@
     
     <div class="container">
         <h3>Add Data</h3>
-        <form action='/api/users' method="post">
+        <form action='/post' method="post">
+            <input type="text" placeholder="employee ID" name="empId" required>
             <input type="text" placeholder="name" name="name" required>
-            <input type="text" placeholder="email" name="email" required>
-            <input type="text" placeholder="gender" name="gender" required>
-            <input type="text" placeholder="status" name="status" required>
+            <input type="number" placeholder="age" name="age" required>
+            <input type="number" placeholder="salary" name="salary" required>
+            <input type="text" placeholder="location" name="location" required>
             <button type="submit">Submit</button>
         </form>
     </div>
     <hr>
     <table>
         <tr>
+            <th>Employee ID</th>
             <th>Name</th>
-            <th>Email</th>
-            <th>Gender</th>
-            <th>Status</th>
+            <th>Age</th>
+            <th>Salary</th>
+            <th>Location</th>
         </tr>
         <% data.forEach((item)=>{%>
             <form action="/<%=item._id%>" method="GET"> 
                 <tr id="<%=item._id%>" >
-                    <!-- <%=item%> -->
-                    <!-- <span id='id' ><%=item._id%></span> -->
+                    <td id="empId"><%= item.empId%></td>
                     <td id="name"><%= item.name%></td>
-                    <td id="email"><%= item.email%></td>
-                    <td id="gender"><%= item.gender%></td>
-                    <td id="status"><%= item.status%></td>
+                    <td id="age"><%= item.age%></td>
+                    <td id="salary"><%= item.salary%></td>
+                    <td id="location"><%= item.location%></td>
                     <td><button id="updateOrDelete" type="submit">Update/Delete</button></td>
                 </tr>
             </form>
