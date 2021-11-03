@@ -1,0 +1,17 @@
+version: "3"
+services:
+  node:
+    image: a5:alpine
+    build: . 
+    ports: 
+      -  '3000:3000'
+    links:
+      - mongo
+    volumes:
+      - .:/usr/src/app
+  mongo:
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - '27017:27017'

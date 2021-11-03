@@ -14,16 +14,17 @@ POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
+    "empId":1,
     "name": "cap",
-    "email":"fdfdaad",
-    "gender":"male",
-    "status":"queue"
+    "age":"20",
+    "salary":902,
+    "location":"udaipur"
 }
 
 ###
 
 
-DELETE http://localhost:3000/api/users/616d0509da400fd8be97d2b1
+DELETE http://localhost:3000/api/users/616d25a6ee1974dc2c0e8cb2
 
 
 ###

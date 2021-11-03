@@ -7,9 +7,12 @@ const { query } = require('express-validator');
 
 async function getData(req, res, next) {
     let data
-    // console.log(req.params.id);
     try{
-        data = await model.findById(req.params.id)
+        // console.log(req.query.empId);
+        // console.log(req.params.id);
+        // console.log(req.body.empId);
+        data = await model.findOne({"empId":req.params.id})
+        // console.log(data.empId);
         if( data==null ){
             return res.status(404).json({message:"Cannot find Data"})
         }
@@ -56,9 +59,9 @@ route.post('/post',[
 
 /*
     @description update User
-    @method GET /update User
+    @method.post /update User
 */
-route.get('/update/:id',getData,[
+route.post('/update/:id',[
     check('name','Invalid Employee Name')
         .exists()
         .isLength({min:4,max:10})
@@ -78,32 +81,18 @@ route.get('/update/:id',getData,[
 
 /*
     @description delete user
-    @method GET / user
+    @method.post / user
 */
-route.get('/delete/:id',services.deleteUser) ;
-
+route.post('/delete/:id',services.deleteUser) ;
 
 
 // all api
 route.get('/api/users',services.allUserAPI)
-route.post('/api/users',[
-    check('name','Invalid Employee Name')
-        .exists()
-        .isLength({min:4,max:10})
-        .isAlpha(["en-US"], { ignore: " " }),
-    check('location','Location in not valid')
-        .exists()
-        .isLength({min:3})
-        .isAlpha(["en-US"], { ignore: " " }),
-    check('age','Age is inapropriate')
-        .exists()
-        .isNumeric(),
-    check('salary','Age is inapropriate')
-        .exists()
-        .isNumeric()
-        
-],services.postAPI)
+route.post('/api/users',services.postAPI)
 route.patch('/api/users/:id',[
+    check('empId',"Employee ID is apropriate")
+        .exists()
+        .isAlphanumeric(),
     check('name','Invalid Employee Name')
         .isLength({min:4,max:10})
         .isAlpha(["en-US"], { ignore: " " }),
@@ -117,20 +106,21 @@ route.patch('/api/users/:id',[
         .exists()
         .isNumeric()
         
-],services.putAPI)
-route.delete('/api/users/:id',services.deleteAPI)
+],getData,services.patchAPI)
+route.delete('/api/users/:id',getData,services.deleteAPI)
 
-route.get('/api/command',services.shellscripts)
-
+route.get('/api/command',[
+    query('command','Command cannot be empty').exists()
+],
+services.shellscripts)
 
 route.get('/api/readfile',[
-    query('filename','Filename must not be empty')
+    query('filepath','Filepath must not be empty')
         .exists()
 ],services.readFile)
+
 route.post('/api/writefile',[
-    query('data','Data must not be empty')
-        .exists(),
-    query('filename','Filename must not be empty')
+    query('filepath','Filepath must not be empty')
         .exists()
 ],services.writeFile)
 module.exports = route 

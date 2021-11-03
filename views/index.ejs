@@ -30,7 +30,7 @@
     
     <div class="container">
         <h3>Add Data</h3>
-        <form action='/post' method="post">
+        <form action='/post' method="POST">
             <input type="text" placeholder="employee ID" name="empId" required>
             <input type="text" placeholder="name" name="name" required>
             <input type="number" placeholder="age" name="age" required>
@@ -49,14 +49,14 @@
             <th>Location</th>
         </tr>
         <% data.forEach((item)=>{%>
-            <form action="/<%=item._id%>" method="GET"> 
+            <form action="/<%=item.empId%>" method="GET"> 
                 <tr id="<%=item._id%>" >
                     <td id="empId"><%= item.empId%></td>
                     <td id="name"><%= item.name%></td>
                     <td id="age"><%= item.age%></td>
                     <td id="salary"><%= item.salary%></td>
                     <td id="location"><%= item.location%></td>
-                    <td><button id="updateOrDelete" type="submit">Update/Delete</button></td>
+                    <td><button id="updateOrDelete" type="submit" >Update/Delete</button></td>
                 </tr>
             </form>
             
